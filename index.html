@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jhones Wilson C — AI Creative Designer</title>
+  <meta name="description" content="AI Creative Designer specializing in AI-powered cinematic product ads and visual content for modern brands.">
+  <link rel="stylesheet" href="shared.css">
+  <style>
+
+  /* ── HERO ── */
+  .hero {
+    min-height: auto;
+    padding: 140px 0 72px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 60% 70% at 80% 50%, rgba(201,168,76,.06) 0%, transparent 65%),
+      radial-gradient(ellipse 40% 50% at 10% 20%, rgba(201,168,76,.03) 0%, transparent 60%);
+  }
+  /* Animated grid lines */
+  .hero-grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(201,168,76,.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(201,168,76,.04) 1px, transparent 1px);
+    background-size: 80px 80px;
+    opacity: .52;
+    mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%);
+  }
+  /* Floating orb */
+  .hero-orb {
+    position: absolute; right: 8%; top: 50%;
+    transform: translateY(-50%);
+    width: min(500px, 42vw); height: min(500px, 42vw);
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 35%, rgba(201,168,76,.12) 0%, rgba(201,168,76,.04) 40%, transparent 70%);
+    border: 1px solid rgba(201,168,76,.1);
+    animation: orbFloat 8s ease-in-out infinite;
+  }
+  .hero-orb::before {
+    content:''; position:absolute; inset:20px; border-radius:50%;
+    border: 1px solid rgba(201,168,76,.06);
+    animation: orbFloat 8s ease-in-out infinite reverse;
+  }
+  .hero-orb::after {
+    content:''; position:absolute; inset:60px; border-radius:50%;
+    border: 1px solid rgba(201,168,76,.08);
+  }
+  @keyframes orbFloat {
+    0%,100% { transform:translateY(-50%) scale(1); }
+    50%      { transform:translateY(calc(-50% - 18px)) scale(1.03); }
+  }
+  /* Vertical text decoration */
+  .hero-vtext {
+    position: absolute; right: calc(8% + min(500px,42vw) + 24px); top: 50%;
+    transform: translateY(-50%) rotate(90deg);
+    transform-origin: center;
+    font-size: 8px; letter-spacing: .4em; text-transform: uppercase;
+    color: rgba(201,168,76,.25); white-space: nowrap;
+  }
+    /* Horizontal decorative line */
+  .hero-line {
+    position: absolute; bottom: 80px; left: var(--pad); right: 42%;
+    height: 1px;
+    background: linear-gradient(to right, var(--gold), transparent);
+    opacity: .25;
+    animation: lineGrow 1.5s 1.2s both;
+  }
+  @keyframes lineGrow { from{transform:scaleX(0); transform-origin:left} to{transform:scaleX(1)} }
+
+  .hero-inner {
+    position: relative; z-index: 2;
+    max-width: var(--max); margin: 0 auto; padding: 0 var(--pad);
+    width: 100%;
+    display: grid;
+    justify-items: start;
+    align-content: center;
+  }
+  .hero-eyebrow { animation: heroFU .8s .1s both; }
+  .hero-name    { animation: heroFU .8s .25s both; }
+  .hero-role    { animation: heroFU .8s .4s both; }
+  .hero-desc    { animation: heroFU .8s .55s both; max-width: 500px; margin-top: 22px; }
+  .hero-cta     { animation: heroFU .8s .7s both; display:flex; gap:14px; flex-wrap:wrap; margin-top:38px; }
+  .hero-stats   { animation: heroFU .8s .85s both; display:flex; gap:44px; flex-wrap:wrap; margin-top:52px; }
+  @keyframes heroFU { from{opacity:0;transform:translateY(22px)} to{opacity:1;transform:none} }
+
+  .hero-role {
+    font-family: 'Syne', sans-serif; font-size: clamp(11px,1.4vw,15px);
+    font-weight: 600; letter-spacing: .18em; text-transform: uppercase;
+    color: var(--muted); margin-top: 18px;
+  }
+  .stat-num { font-family:'Cormorant Garamond',serif; font-size:42px; font-weight:300; color:var(--gold); line-height:1; }
+  .stat-lbl { font-size:9px; letter-spacing:.18em; text-transform:uppercase; color:var(--muted); margin-top:5px; }
+
+  /* ── ABOUT ── */
+  .about-section { padding:110px 0; }
+  .about-grid { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:start; }
+  .skills-grid { display:grid; grid-template-columns:1fr 1fr; gap:2px; margin-top:28px; }
+  .skill-card {
+    padding:16px 20px; background:var(--surf); border:1px solid var(--bdr);
+    position:relative; overflow:hidden; transition:background .3s, border-color .3s;
+  }
+  .skill-card::before {
+    content:''; position:absolute; left:0; top:0; bottom:0; width:2px;
+    background:var(--gold); transform:scaleY(0); transform-origin:bottom; transition:transform .3s;
+  }
+  .skill-card:hover { background:var(--surf2); border-color:var(--bdr-h); }
+  .skill-card:hover::before { transform:scaleY(1); }
+  .skill-name { font-family:'Syne',sans-serif; font-size:10px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; }
+  .skill-tools { font-size:11px; color:var(--muted); margin-top:3px; line-height:1.5; }
+
+  /* ── EXPERIENCE ── */
+  .exp-section { padding:96px 0; }
+  .exp-card { border-left:1px solid var(--bdr); padding-left:28px; position:relative; }
+  .exp-card::before { content:''; position:absolute; left:-4px; top:0; width:7px; height:7px; border-radius:50%; background:var(--gold); }
+  .exp-role { font-family:'Syne',sans-serif; font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:var(--gold); }
+  .exp-company { font-size:18px; color:var(--txt); margin-top:4px; font-family:'Cormorant Garamond',serif; font-weight:400; }
+  .exp-period { font-size:10px; letter-spacing:.15em; color:var(--muted); margin-top:8px; }
+  .exp-desc { font-size:13.5px; color:var(--muted); margin-top:12px; line-height:1.78; }
+  .exp-bullets { list-style:none; margin-top:12px; display:flex; flex-direction:column; gap:7px; }
+  .exp-bullets li { font-size:13px; color:var(--muted); display:flex; gap:10px; align-items:flex-start; }
+  .exp-bullets li::before { content:'·'; color:var(--gold); flex-shrink:0; margin-top:1px; }
+
+  /* ── WORK PREVIEW ── */
+  .work-section { padding:110px 0; }
+  .preview-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:18px; margin-top:54px; align-items:stretch; }
+  .preview-card {
+    position:relative; overflow:hidden; background:var(--surf);
+    aspect-ratio:16/9; min-height:100%; cursor:none; display:block;
+    border:1px solid var(--bdr);
+  }
+  .preview-card img {
+    width:100%; height:100%; object-fit:cover; object-position:center;
+    transition:transform .85s cubic-bezier(.16,1,.3,1), filter .85s cubic-bezier(.16,1,.3,1);
+    filter:brightness(.64) saturate(.86);
+    will-change:transform;
+  }
+  .preview-card:hover img { transform:scale(1.045); filter:brightness(.86) saturate(1); }
+  .preview-overlay {
+    position:absolute; inset:0;
+    background:linear-gradient(to top, rgba(0,0,0,.88) 0%, rgba(0,0,0,.32) 42%, transparent 72%);
+    display:flex; flex-direction:column; justify-content:flex-end; padding:22px;
+  }
+  .preview-cat  { font-size:8px; letter-spacing:.3em; text-transform:uppercase; color:var(--gold); }
+  .preview-title { font-family:'Cormorant Garamond',serif; font-size:20px; color:var(--txt); margin-top:4px; line-height:1.1; }
+  .preview-sub  { font-size:9.5px; color:var(--muted); margin-top:5px; letter-spacing:.08em; }
+  .preview-arr  { position:absolute; top:14px; right:14px; width:28px; height:28px; border:1px solid rgba(201,168,76,.3); display:flex; align-items:center; justify-content:center; color:var(--gold); font-size:12px; opacity:0; transition:opacity .3s; }
+  .preview-card:hover .preview-arr { opacity:1; }
+  .view-all-wrap { text-align:center; padding-top:44px; }
+
+  /* ── SERVICES ── */
+  .services-section { padding:110px 0; }
+  .services-intro { font-family:'Syne',sans-serif; font-size:12px; font-weight:600; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); max-width:800px; margin-top:14px; line-height:1.6; }
+  .services-grid { display:grid; grid-template-columns:1fr 1fr; gap:0; margin-top:52px; border:1px solid var(--bdr); }
+  .service-item {
+    padding:36px 40px; border-right:1px solid var(--bdr); border-bottom:1px solid var(--bdr);
+    position:relative; overflow:hidden; transition:background .35s;
+  }
+  .service-item:nth-child(even) { border-right:0; }
+  .service-item:nth-last-child(-n+2) { border-bottom:0; }
+  .service-item::after { content:''; position:absolute; bottom:0; left:40px; right:40px; height:1px; background:var(--gold); transform:scaleX(0); transition:transform .35s; }
+  .service-item:hover { background:var(--surf); }
+  .service-item:hover::after { transform:scaleX(1); }
+  .service-num  { font-family:'Cormorant Garamond',serif; font-size:52px; font-weight:300; color:rgba(201,168,76,.1); line-height:1; }
+  .service-name { font-family:'Syne',sans-serif; font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; margin-top:8px; }
+  .service-desc { font-size:13px; color:var(--muted); margin-top:10px; line-height:1.75; }
+
+  /* ── AI STACK ── */
+  .stack-section { padding:100px 0; }
+  .stack-cols { display:grid; grid-template-columns:1fr 1px 1fr; gap:0; margin-top:52px; align-items:start; }
+  .stack-divider { background:var(--bdr); }
+  .stack-col { padding:0 44px; }
+  .stack-col:first-child { padding-left:0; }
+  .stack-col:last-child  { padding-right:0; }
+  .stack-col-title { font-family:'Syne',sans-serif; font-size:10px; font-weight:700; letter-spacing:.15em; text-transform:uppercase; color:var(--gold); margin-bottom:24px; }
+  .stack-list { list-style:none; display:flex; flex-direction:column; gap:12px; }
+  .stack-list li { font-size:13.5px; color:var(--muted); display:flex; align-items:center; gap:12px; }
+  .stack-list li::before { content:''; width:4px; height:4px; background:var(--gold); border-radius:50%; flex-shrink:0; }
+
+  /* ── WORKFLOW ── */
+  .workflow-section { padding:100px 0; }
+  .workflow-intro { font-family:'Syne',sans-serif; font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); margin-top:10px; }
+  .workflow-tags  { display:flex; flex-wrap:wrap; gap:8px; margin-top:14px; }
+  .workflow-grid  { display:grid; grid-template-columns:1fr 1fr; gap:0; margin-top:52px; border:1px solid var(--bdr); }
+  .wf-item {
+    padding:32px 36px; border-right:1px solid var(--bdr); border-bottom:1px solid var(--bdr);
+    transition:background .3s;
+  }
+  .wf-item:nth-child(even) { border-right:0; }
+  .wf-item:nth-last-child(-n+2) { border-bottom:0; }
+  .wf-item:hover { background:var(--surf); }
+  .wf-step { font-size:9px; letter-spacing:.28em; color:var(--gold); text-transform:uppercase; margin-bottom:10px; }
+  .wf-title { font-family:'Syne',sans-serif; font-size:11px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; }
+  .wf-desc { font-size:13px; color:var(--muted); margin-top:9px; line-height:1.75; }
+  .workflow-tagline { text-align:center; padding-top:44px; font-size:10px; letter-spacing:.3em; text-transform:uppercase; color:var(--dim); }
+
+  /* ── CONTACT ── */
+  .contact-section { padding:110px 0; }
+  .contact-grid { display:grid; grid-template-columns:1fr 1px 1fr; gap:0; margin-top:54px; align-items:start; }
+  .contact-divider { background:var(--bdr); }
+  .contact-col { padding:0 48px; }
+  .contact-col:first-child { padding-left:0; }
+  .contact-col:last-child  { padding-right:0; }
+  .avail-list { list-style:none; display:flex; flex-direction:column; gap:9px; margin-top:20px; }
+  .avail-list li { font-size:13.5px; color:var(--muted); display:flex; align-items:center; gap:12px; }
+  .avail-list li::before { content:''; width:4px; height:4px; background:var(--gold); border-radius:50%; flex-shrink:0; }
+  .spec-list { list-style:none; display:flex; flex-direction:column; gap:7px; margin-top:14px; }
+  .spec-list li { font-size:13px; color:var(--muted); }
+  .contact-detail { display:flex; flex-direction:column; gap:22px; }
+  .cd-label { font-size:8.5px; letter-spacing:.3em; text-transform:uppercase; color:var(--gold); margin-bottom:3px; }
+  .cd-value { font-size:15px; color:var(--txt); }
+  .cd-value a { color:var(--txt); transition:color .3s; }
+  .cd-value a:hover { color:var(--gold); }
+  .contact-tagline { text-align:center; padding-top:56px; font-size:9px; letter-spacing:.3em; text-transform:uppercase; color:var(--dim); }
+
+  /* RESPONSIVE */
+  @media(max-width:900px) {
+    .about-grid, .contact-grid, .stack-cols { grid-template-columns:1fr; }
+    .stack-divider, .contact-divider { display:none; }
+    .stack-col, .contact-col { padding:0; }
+    .stack-col + .stack-col { margin-top:36px; }
+    .contact-col + .contact-col { margin-top:36px; }
+    .services-grid, .workflow-grid { grid-template-columns:1fr; }
+    .service-item { border-right:0; }
+    .service-item:nth-last-child(-n+2) { border-bottom:1px solid var(--bdr); }
+    .service-item:last-child { border-bottom:0; }
+    .wf-item { border-right:0; }
+    .wf-item:nth-last-child(-n+2) { border-bottom:1px solid var(--bdr); }
+    .wf-item:last-child { border-bottom:0; }
+    .preview-grid { grid-template-columns:1fr 1fr; gap:14px; }
+    .hero-orb { display:none; }
+    .hero-vtext { display:none; }
+    .hero-stats { gap:24px; }
+    .stat-num { font-size:32px; }
+    .skills-grid { grid-template-columns:1fr; }
+    .about-section, .work-section, .services-section, .stack-section, .workflow-section, .contact-section { padding:70px 0; }
+    .exp-section { padding:60px 0; }
+  }
+  @media(max-width:620px) {
+    .preview-grid { grid-template-columns:1fr; }
+    .preview-overlay { padding:18px; }
+    .hero-stats { margin-top:44px; padding-top:20px; }
+  }
+  </style>
+</head>
+<body>
+
+<div class="cur"></div>
+<div class="cur-r"></div>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nav-logo" href="index.html">
+    <div class="nav-logo-main">JHONES WILSON C</div>
+    <div class="nav-logo-sub">AI Creative Designer</div>
+  </a>
+  <div class="nav-links">
+    <a href="index.html"   class="nav-a on">Home</a>
+    <a href="images.html"  class="nav-a">Image Campaigns</a>
+    <a href="videos.html"  class="nav-a">Video Projects</a>
+    <a href="#contact"     class="nav-a nav-cta">Let's Work</a>
+  </div>
+  <button class="hamburger" onclick="toggleMob()">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mob-nav">
+  <a href="index.html"  onclick="toggleMob()">Home</a>
+  <a href="images.html" onclick="toggleMob()">Image Campaigns</a>
+  <a href="videos.html" onclick="toggleMob()">Video Projects</a>
+  <a href="#contact"    onclick="toggleMob()">Let's Work</a>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lb" id="lb" onclick="closeLB()">
+  <button class="lb-close" onclick="closeLB()">✕</button>
+  <img src="" alt="" onclick="event.stopPropagation()">
+  <div class="lb-hint">ESC or click outside to close</div>
+</div>
+
+<!-- ══════════════════════════════════════ -->
+<!-- HERO                                   -->
+<!-- ══════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-orb"></div>
+  <div class="hero-line"></div>
+  <div class="hero-inner">
+    <div class="eyebrow hero-eyebrow">Cinematic Designer � Mysore, India</div>
+    <h1 class="heading-xl hero-name">
+      Jhones<br>Wilson <em class="gold">C</em>
+    </h1>
+    <p class="hero-role">Creative Designer &nbsp;�&nbsp; Visual Storyteller &nbsp;�&nbsp; Cinematic Director</p>
+    <p class="body-text hero-desc">
+      Transforming brands through cinematic imagery � beauty, fashion, jewellery, lifestyle & luxury. Every frame crafted with precision, purpose, and photorealistic perfection.
+    </p>
+    <div class="hero-cta">
+      <a href="images.html" class="btn btn-gold">View Image Campaigns</a>
+      <a href="videos.html" class="btn btn-outline">Video Projects</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">8+</div>
+        <div class="stat-lbl">Campaign Categories</div>
+      </div>
+      <div>
+        <div class="stat-num">50+</div>
+        <div class="stat-lbl">Projects Delivered</div>
+      </div>
+      <div>
+        <div class="stat-num">6+</div>
+        <div class="stat-lbl">Tools Mastered</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="mq-wrap">
+  <div class="mq-track">
+    <div class="mq-item">Beauty & Cosmetics</div>
+    <div class="mq-item">Fragrance & Luxury</div>
+    <div class="mq-item">Tech & Lifestyle</div>
+    <div class="mq-item">Fashion & Apparel</div>
+    <div class="mq-item">Jewellery & Accessories</div>
+    <div class="mq-item">Cinematic Video</div>
+    <div class="mq-item">Ethnic & Lifestyle</div>
+    <div class="mq-item">Home & Lifestyle</div>
+    <div class="mq-item">Beauty & Cosmetics</div>
+    <div class="mq-item">Fragrance & Luxury</div>
+    <div class="mq-item">Tech & Lifestyle</div>
+    <div class="mq-item">Fashion & Apparel</div>
+    <div class="mq-item">Jewellery & Accessories</div>
+    <div class="mq-item">Cinematic Video</div>
+    <div class="mq-item">Ethnic & Lifestyle</div>
+    <div class="mq-item">Home & Lifestyle</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════ -->
+<!-- EXPERIENCE                             -->
+<!-- ══════════════════════════════════════ -->
+<section class="exp-section section-alt" id="experience">
+  <div class="container">
+    <div class="rv"><div class="eyebrow">Experience</div><h2 class="heading-lg">Professional <em class="gold">Journey</em></h2></div>
+    <div style="margin-top:48px; display:flex; flex-direction:column; gap:40px;">
+
+      <div class="exp-card rv d1">
+        <div class="exp-role">Creative Designer</div>
+        <div class="exp-company">PavePilotAI</div>
+        <div class="exp-period">2025 – Present &nbsp;·&nbsp; Mysore, Karnataka</div>
+        <p class="exp-desc">Contributing to AI-driven commercial content production through cinematic visual design, prompt engineering, and creative refinement workflows.</p>
+        <ul class="exp-bullets">
+          <li>Created AI-generated product advertisements and visual campaigns</li>
+          <li>Developed structured prompts for consistent visual outputs</li>
+          <li>Produced cinematic short-form video creatives and refined visuals into brand-ready assets</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ══════════════════════════════════════ -->
+<!-- ABOUT                                  -->
+<!-- ══════════════════════════════════════ -->
+<section class="about-section" id="about">
+  <div class="container">
+    <div class="about-grid">
+
+      <!-- LEFT: TEXT -->
+      <div class="rv">
+        <div class="eyebrow">About Me</div>
+        <h2 class="heading-lg">AI-Powered <em class="gold">Visual</em><br>Creator</h2>
+        <div class="rule"></div>
+        <p class="body-text">
+          I am an AI Creative Designer specializing in transforming static product images into high-end advertisement visuals. With hands-on experience in AI-driven creative workflows, I focus on creating cinematic compositions, premium lighting, and brand-ready ad creatives.
+        </p>
+        <p class="body-text" style="margin-top:14px;">
+          Currently working at PavePilotAI, I contribute to fast-paced content production by combining prompt engineering, visual design, and post-production refinement to deliver high-quality commercial outputs.
+        </p>
+      </div>
+
+      <!-- RIGHT: SKILLS -->
+      <div class="rv d2">
+        <div class="eyebrow">Skills</div>
+        <div class="skills-grid">
+          <div class="skill-card">
+            <div class="skill-name">AI Ad Creative Direction</div>
+            <div class="skill-tools">Cinematic compositions · Premium lighting</div>
+          </div>
+          <div class="skill-card">
+            <div class="skill-name">Cinematic Product Visualization</div>
+            <div class="skill-tools">Gemini · Higgsfield · Veo · Kling</div>
+          </div>
+          <div class="skill-card">
+            <div class="skill-name">Prompt Engineering</div>
+            <div class="skill-tools">Image · Video · Motion · Commercial</div>
+          </div>
+          <div class="skill-card">
+            <div class="skill-name">AI Image & Video Generation</div>
+            <div class="skill-tools">Flux · Stable Diffusion · Firefly</div>
+          </div>
+          <div class="skill-card">
+            <div class="skill-name">Adobe Photoshop</div>
+            <div class="skill-tools">Compositing · Retouching · Colour grading</div>
+          </div>
+          <div class="skill-card">
+            <div class="skill-name">Premiere Pro & After Effects</div>
+            <div class="skill-tools">Video editing · Motion graphics</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ══════════════════════════════════════ -->
+<!-- WORK PREVIEW                           -->
+<!-- ══════════════════════════════════════ -->
+<section class="work-section" id="work">
+  <div class="container">
+    <div class="rv">
+      <div class="eyebrow">Selected Work</div>
+      <h2 class="heading-lg">Campaign <em class="gold">Highlights</em></h2>
+    </div>
+    <p class="body-text rv d1" style="max-width:560px; margin-top:14px;">
+      A selection from 8 campaign categories — beauty, fashion, jewellery, automotive, lifestyle and beyond.
+    </p>
+
+    <div class="preview-grid">
+      <a href="images.html" class="preview-card rv d1">
+        <img src="assets/beauty.jpg" alt="Beauty & Cosmetic Campaign">
+        <div class="preview-overlay">
+          <div class="preview-cat">01 · Image Campaign</div>
+          <div class="preview-title">Beauty & Cosmetics</div>
+          <div class="preview-sub">Maybelline SuperStay Vinyl Ink</div>
+        </div>
+        <div class="preview-arr">→</div>
+      </a>
+      <a href="images.html" class="preview-card rv d2">
+        <img src="assets/fragrance.jpg" alt="Fragrance Campaign">
+        <div class="preview-overlay">
+          <div class="preview-cat">02 · Image Campaign</div>
+          <div class="preview-title">Fragrance & Luxury</div>
+          <div class="preview-sub">Skinn Escapade — Mediterranean Grove</div>
+        </div>
+        <div class="preview-arr">→</div>
+      </a>
+      <a href="images.html" class="preview-card rv d3">
+        <img src="assets/jewellery.jpg" alt="Jewellery Campaign">
+        <div class="preview-overlay">
+          <div class="preview-cat">07 · Image Campaign</div>
+          <div class="preview-title">Jewellery & Accessories</div>
+          <div class="preview-sub">Traditional Temple Jewellery</div>
+        </div>
+        <div class="preview-arr">→</div>
+      </a>
+      <a href="images.html" class="preview-card rv d1">
+        <img src="assets/fashion.jpg" alt="Fashion Campaign">
+        <div class="preview-overlay">
+          <div class="preview-cat">05 · Image Campaign</div>
+          <div class="preview-title">Fashion & Apparel</div>
+          <div class="preview-sub">Modern Printed Skirt Collection</div>
+        </div>
+        <div class="preview-arr">→</div>
+      </a>
+      <a href="videos.html" class="preview-card rv d2">
+        <img src="assets/vid_jaguar.jpg" alt="Jaguar Film">
+        <div class="preview-overlay">
+          <div class="preview-cat">02 · Video Project</div>
+          <div class="preview-title">Jaguar F-Type Film</div>
+          <div class="preview-sub">Cinematic Automotive · Luxury Storytelling</div>
+        </div>
+        <div class="preview-arr">→</div>
+      </a>
+      <a href="videos.html" class="preview-card rv d3">
+        <img src="assets/vid_olay.jpg" alt="Olay Film">
+        <div class="preview-overlay">
+          <div class="preview-cat">01 · Video Project</div>
+          <div class="preview-title">Olay Regenerist Film</div>
+          <div class="preview-sub">Cinematic CGI · Beauty Commercial</div>
+        </div>
+        <div class="preview-arr">→</div>
+      </a>
+    </div>
+
+    <div class="view-all-wrap rv">
+      <a href="images.html" class="btn btn-outline">View All 7 Image Campaigns →</a>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ══════════════════════════════════════ -->
+<!-- SERVICES                               -->
+<!-- ══════════════════════════════════════ -->
+<section class="services-section section-alt" id="services">
+  <div class="container">
+    <div class="rv">
+      <div class="eyebrow">Services</div>
+      <h2 class="heading-lg">What I <em class="gold">Offer</em></h2>
+    </div>
+    <p class="services-intro rv d1">Visual Storytelling, Cinematic Commercials & Premium Brand Content</p>
+
+    <div class="services-grid rv d2">
+      <div class="service-item">
+        <div class="service-num">01</div>
+        <div class="service-name">Cinematic Product Commercials</div>
+        <p class="service-desc">Luxury AI-generated product campaigns crafted with cinematic lighting, premium storytelling, commercial aesthetics, and high-end visual direction for modern brands.</p>
+      </div>
+      <div class="service-item">
+        <div class="service-num">04</div>
+        <div class="service-name">Automotive Cinematic Films</div>
+        <p class="service-desc">High-end automotive storytelling with cinematic motion aesthetics, luxury framing, dramatic environments, and commercial-grade visual execution.</p>
+      </div>
+      <div class="service-item">
+        <div class="service-num">02</div>
+        <div class="service-name">Fashion & Apparel Campaigns</div>
+        <p class="service-desc">Editorial fashion visuals featuring luxury styling, lifestyle storytelling, premium compositions, and cinematic fashion direction for apparel and lifestyle brands.</p>
+      </div>
+      <div class="service-item">
+        <div class="service-num">05</div>
+        <div class="service-name">AI Product Visualization</div>
+        <p class="service-desc">Premium AI-generated product renders, luxury showcase visuals, cinematic mockups, and campaign-ready branding content for commercial use.</p>
+      </div>
+      <div class="service-item">
+        <div class="service-num">03</div>
+        <div class="service-name">UGC & Social Media Ads</div>
+        <p class="service-desc">Authentic creator-style commercial content optimized for Instagram, TikTok, YouTube Shorts, and modern social media advertising campaigns.</p>
+      </div>
+      <div class="service-item">
+        <div class="service-num">06</div>
+        <div class="service-name">Creative Direction & Storyboarding</div>
+        <p class="service-desc">Concept development, cinematic planning, storyboard creation, visual storytelling, prompt engineering, and AI-driven creative execution from idea to final output.</p>
+      </div>
+    </div>
+
+    <p style="text-align:center; font-size:9px; letter-spacing:.28em; text-transform:uppercase; color:var(--dim); margin-top:36px;" class="rv">
+      Where storytelling meets AI visual direction.
+    </p>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ══════════════════════════════════════ -->
+<!-- AI CREATIVE STACK                      -->
+<!-- ══════════════════════════════════════ -->
+<section class="stack-section" id="stack">
+  <div class="container">
+    <div class="rv">
+      <div class="eyebrow">Creative Stack & Workflow</div>
+      <h2 class="heading-lg">Commercial Content<br><em class="gold">Creation</em> for Cinematic Brand Storytelling</h2>
+    </div>
+    <p class="body-text rv d1" style="margin-top:14px; max-width:640px;">
+      Storytelling · Visual Direction · Generative Workflows
+    </p>
+
+    <div class="stack-cols rv d2">
+      <div class="stack-col">
+        <div class="stack-col-title">AI Tools & Generative Workflows</div>
+        <ul class="stack-list">
+          <li>ChatGPT & Claude</li>
+          <li>Gemini & Google AI Studio</li>
+          <li>Google Veo & Flow AI</li>
+          <li>Higgsfield & Arena</li>
+          <li>Prompt Engineering</li>
+          <li>Rapid AI Tool Adaptability</li>
+        </ul>
+      </div>
+      <div class="stack-divider"></div>
+      <div class="stack-col">
+        <div class="stack-col-title">Creative Software</div>
+        <ul class="stack-list">
+          <li>Photoshop</li>
+          <li>Premiere Pro</li>
+          <li>CapCut</li>
+          <li>Illustrator</li>
+        </ul>
+      </div>
+    </div>
+
+    <p style="text-align:center; font-size:9px; letter-spacing:.28em; text-transform:uppercase; color:var(--dim); margin-top:48px;" class="rv">
+      Modern commercial storytelling powered by AI & cinematic visual thinking.
+    </p>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ══════════════════════════════════════ -->
+<!-- WORKFLOW                               -->
+<!-- ══════════════════════════════════════ -->
+<section class="workflow-section section-alt">
+  <div class="container">
+    <div class="rv">
+      <div class="eyebrow">Creative Process & Workflow</div>
+      <h2 class="heading-lg">From Concept to<br><em class="gold">Cinematic</em> Commercial Execution</h2>
+    </div>
+    <p class="workflow-intro rv d1">From concept development to cinematic commercial execution</p>
+    <div class="workflow-tags rv d2">
+      <span class="tag">Ideation</span>
+      <span class="tag">Storyboarding</span>
+      <span class="tag">AI Generation</span>
+      <span class="tag">Visual Direction</span>
+    </div>
+
+    <div class="workflow-grid rv d3">
+      <div class="wf-item">
+        <div class="wf-step">Step 01</div>
+        <div class="wf-title">Concept Development</div>
+        <p class="wf-desc">Researching brand identity, campaign mood, visual direction, and storytelling approach for cinematic commercial content.</p>
+      </div>
+      <div class="wf-item">
+        <div class="wf-step">Step 04</div>
+        <div class="wf-title">Cinematic Video Creation</div>
+        <p class="wf-desc">Generating motion-focused commercial sequences, cinematic storytelling shots, and AI-driven video concepts.</p>
+      </div>
+      <div class="wf-item">
+        <div class="wf-step">Step 02</div>
+        <div class="wf-title">Prompt Engineering</div>
+        <p class="wf-desc">Developing optimized prompts and refining AI instructions for consistent, premium-quality visual generation.</p>
+      </div>
+      <div class="wf-item">
+        <div class="wf-step">Step 05</div>
+        <div class="wf-title">Post-Production & Refinement</div>
+        <p class="wf-desc">Enhancing visuals with color balancing, compositing, cinematic editing, and premium commercial finishing.</p>
+      </div>
+      <div class="wf-item">
+        <div class="wf-step">Step 03</div>
+        <div class="wf-title">AI Visual Generation</div>
+        <p class="wf-desc">Creating cinematic product visuals, fashion campaigns, commercial scenes, and storytelling compositions using AI workflows.</p>
+      </div>
+      <div class="wf-item">
+        <div class="wf-step">Step 06</div>
+        <div class="wf-title">Final Commercial Delivery</div>
+        <p class="wf-desc">Preparing polished campaign-ready outputs optimized for branding, advertising, social media, and commercial presentation.</p>
+      </div>
+    </div>
+
+    <p class="workflow-tagline rv">Transforming ideas into cinematic AI-driven commercial experiences.</p>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ══════════════════════════════════════ -->
+<!-- CONTACT                                -->
+<!-- ══════════════════════════════════════ -->
+<section class="contact-section" id="contact">
+  <div class="container">
+    <div class="rv">
+      <div class="eyebrow">Let's Work Together</div>
+      <h2 class="heading-lg">Creating Cinematic <em class="gold">AI-Driven</em><br>Commercial Experiences for Modern Brands</h2>
+    </div>
+    <div class="tag-row rv d1" style="margin-top:16px;">
+      <span class="tag">AI Visuals</span>
+      <span class="tag">Cinematic Storytelling</span>
+      <span class="tag">Commercial Content</span>
+      <span class="tag">Creative Direction</span>
+    </div>
+
+    <div class="contact-grid rv d2">
+      <!-- LEFT: AVAILABILITY -->
+      <div class="contact-col">
+        <div class="heading-sm" style="margin-bottom:4px;">Available For</div>
+        <div class="rule"></div>
+        <ul class="avail-list">
+          <li>Full-Time Opportunities</li>
+          <li>Freelance Projects</li>
+          <li>Brand Collaborations</li>
+          <li>Commercial Campaigns</li>
+          <li>Creative Partnerships</li>
+          <li>Remote Opportunities</li>
+        </ul>
+
+        <div class="heading-sm" style="margin-top:36px; margin-bottom:4px;">Specialisation</div>
+        <div class="rule"></div>
+        <ul class="spec-list">
+          <li>AI Commercial Visuals</li>
+          <li>Cinematic Product Campaigns</li>
+          <li>AI Video Storytelling</li>
+          <li>Fashion & Lifestyle Branding</li>
+        </ul>
+      </div>
+
+      <div class="contact-divider"></div>
+
+      <!-- RIGHT: CONTACT DETAILS -->
+      <div class="contact-col">
+        <div class="heading-sm" style="margin-bottom:4px;">Contact</div>
+        <div class="rule"></div>
+        <div class="contact-detail">
+          <div>
+            <div class="cd-label">Email</div>
+            <div class="cd-value"><a href="mailto:jhoneswilsonc@gmail.com">jhoneswilsonc@gmail.com</a></div>
+          </div>
+          <div>
+            <div class="cd-label">Phone</div>
+            <div class="cd-value"><a href="tel:+917406292769">+91 7406292769</a></div>
+          </div>
+          <div>
+            <div class="cd-label">Location</div>
+            <div class="cd-value">Mysore, Karnataka, India</div>
+          </div>
+          <div>
+            <div class="cd-label">LinkedIn</div>
+            <div class="cd-value">
+              <a href="https://linkedin.com/in/jhones-wilson-c-251728257" target="_blank">
+                linkedin.com/in/jhones-wilson-c-251728257
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="contact-tagline rv">Available for Full-Time · Freelance · Commercial Collaborations</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-logo">Jhones Wilson C</div>
+  <p class="footer-copy">© 2025 · AI Creative Designer · Mysore, Karnataka</p>
+  <div class="footer-links">
+    <a href="https://linkedin.com/in/jhones-wilson-c-251728257" target="_blank">LinkedIn</a>
+    <a href="mailto:jhoneswilsonc@gmail.com">Email</a>
+    <a href="images.html">Campaigns</a>
+    <a href="videos.html">Videos</a>
+  </div>
+</footer>
+
+<script src="shared.js"></script>
+</body>
+</html>
