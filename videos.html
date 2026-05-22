@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Video Projects — Jhones Wilson C</title>
+  <link rel="stylesheet" href="shared.css">
+  <style>
+  .page-header {
+    padding: 140px 0 64px;
+    background: linear-gradient(to bottom, var(--bg) 0%, var(--bg2) 100%);
+    border-bottom: 1px solid var(--bdr);
+  }
+  .video-block {
+    padding: 80px 0;
+    border-bottom: 1px solid var(--bdr);
+  }
+  .video-block:nth-child(even) { background: var(--bg2); }
+  .video-block:last-child { border-bottom: 0; }
+
+  .vid-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 40px;
+    margin-bottom: 36px;
+  }
+  .vid-header-left { flex: 1; }
+  .vid-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 80px; font-weight: 300;
+    color: rgba(201,168,76,.1); line-height: 1;
+    flex-shrink: 0; margin-top: -12px;
+  }
+  .vid-subtitle {
+    font-family: 'Syne', sans-serif;
+    font-size: 10px; font-weight: 700;
+    letter-spacing: .12em; text-transform: uppercase;
+    color: var(--muted); margin-top: 10px;
+  }
+  .watch-btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    margin-top: 20px;
+    font-family: 'Syne', sans-serif;
+    font-size: 10px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase;
+    color: var(--gold); border: 1px solid var(--bdr-h);
+    padding: 12px 24px; transition: all .3s; cursor: none;
+  }
+  .watch-btn::before { content: '▶'; font-size: 10px; }
+  .watch-btn:hover { background: rgba(201,168,76,.08); }
+  .stills-label {
+    font-size: 9px; letter-spacing: .24em; text-transform: uppercase;
+    color: var(--muted); margin-bottom: 12px; font-style: italic;
+  }
+
+  @media(max-width:900px){
+    .page-header { padding:110px 0 48px; }
+    .video-block { padding:56px 0; }
+    .vid-number { font-size:48px; }
+    .vid-header { flex-direction:column-reverse; gap:10px; }
+  }
+  </style>
+</head>
+<body>
+
+<div class="cur"></div>
+<div class="cur-r"></div>
+
+<nav class="nav">
+  <a class="nav-logo" href="index.html">
+    <div class="nav-logo-main">JHONES WILSON C</div>
+    <div class="nav-logo-sub">AI Creative Designer</div>
+  </a>
+  <div class="nav-links">
+    <a href="index.html"   class="nav-a">Home</a>
+    <a href="images.html"  class="nav-a">Image Campaigns</a>
+    <a href="videos.html"  class="nav-a on">Video Projects</a>
+    <a href="index.html#contact" class="nav-a nav-cta">Let's Work</a>
+  </div>
+  <button class="hamburger" onclick="toggleMob()">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mob-nav">
+  <a href="index.html"         onclick="toggleMob()">Home</a>
+  <a href="images.html"        onclick="toggleMob()">Image Campaigns</a>
+  <a href="videos.html"        onclick="toggleMob()">Video Projects</a>
+  <a href="index.html#contact" onclick="toggleMob()">Let's Work</a>
+</div>
+
+<div class="lb" id="lb" onclick="closeLB()">
+  <button class="lb-close" onclick="closeLB()">✕</button>
+  <img src="" alt="" onclick="event.stopPropagation()">
+  <div class="lb-hint">ESC or click outside to close</div>
+</div>
+
+<!-- PAGE HEADER -->
+<header class="page-header">
+  <div class="container">
+    <div class="rv">
+      <div class="eyebrow">Cinematic Video Projects</div>
+      <h1 class="heading-xl">AI-Generated <em class="gold">Cinematic</em><br>Video Productions</h1>
+    </div>
+    <p class="body-text rv d2" style="max-width:620px; margin-top:20px;">
+      Cinematic commercial films crafted with luxury storytelling, premium motion aesthetics, product-focused cinematography, and AI-driven visual direction. Click any storyboard image to expand — Watch Film links open the full Vimeo production.
+    </p>
+    <div class="tag-row rv d3" style="margin-top:18px;">
+      <span class="tag">Cinematic</span>
+      <span class="tag">CGI</span>
+      <span class="tag">Commercial</span>
+      <span class="tag">Storytelling</span>
+    </div>
+  </div>
+</header>
+
+<!-- ── 01 OLAY ── -->
+<section class="video-block">
+  <div class="container">
+    <div class="vid-header rv">
+      <div class="vid-header-left">
+        <div class="eyebrow">Cinematic Product Video Projects</div>
+        <h2 class="heading-md">Olay Regenerist — <em class="gold">Cinematic Beauty Film</em></h2>
+        <div class="vid-subtitle">Cinematic · CGI · Beauty · Commercial</div>
+        <div class="tag-row" style="margin-top:12px;">
+          <span class="tag">Kling Turbo</span>
+          <span class="tag">Veo</span>
+          <span class="tag">Gemini</span>
+          <span class="tag">Higgsfield</span>
+        </div>
+        <a href="https://vimeo.com/1193005418?share=copy&fl=sv&fe=ci" target="_blank" class="watch-btn">
+          Watch Film on Vimeo
+        </a>
+      </div>
+      <div class="vid-number">01</div>
+    </div>
+    <p class="stills-label">Storyboard stills — click image to expand</p>
+    <div class="ci rv d2" onclick="openLB('assets/vid_olay.jpg')">
+      <img src="assets/vid_olay.jpg" alt="Olay Regenerist — Cinematic Beauty Film Stills">
+      <div class="ci-badge">Click to view full storyboard</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 02 JAGUAR ── -->
+<section class="video-block">
+  <div class="container">
+    <div class="vid-header rv">
+      <div class="vid-header-left">
+        <div class="eyebrow">Cinematic Product Video Projects</div>
+        <h2 class="heading-md">Jaguar F-Type — <em class="gold">Cinematic Automotive Film</em></h2>
+        <div class="vid-subtitle">Cinematic · Automotive · Luxury · Storytelling</div>
+        <div class="tag-row" style="margin-top:12px;">
+          <span class="tag">Higgsfield</span>
+          <span class="tag">Veo</span>
+          <span class="tag">Gemini</span>
+          <span class="tag">Kling Turbo</span>
+        </div>
+        <a href="https://vimeo.com/1193004533?share=copy&fl=sv&fe=ci" target="_blank" class="watch-btn">
+          Watch Film on Vimeo
+        </a>
+      </div>
+      <div class="vid-number">02</div>
+    </div>
+    <p class="stills-label">Storyboard stills — click image to expand</p>
+    <div class="ci rv d2" onclick="openLB('assets/vid_jaguar.jpg')">
+      <img src="assets/vid_jaguar.jpg" alt="Jaguar F-Type — Cinematic Automotive Film Stills">
+      <div class="ci-badge">Click to view full storyboard</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 03 LUXURY FASHION ── -->
+<section class="video-block">
+  <div class="container">
+    <div class="vid-header rv">
+      <div class="vid-header-left">
+        <div class="eyebrow">Cinematic Product Video Projects</div>
+        <h2 class="heading-md">Luxury Fashion Film — <em class="gold">Romantic Lifestyle Story</em></h2>
+        <div class="vid-subtitle">Cinematic · Fashion · Lifestyle · Storytelling</div>
+        <div class="tag-row" style="margin-top:12px;">
+          <span class="tag">Higgsfield</span>
+          <span class="tag">Kling Turbo</span>
+          <span class="tag">Veo</span>
+        </div>
+        <a href="https://vimeo.com/1192939907?share=copy&fl=sv&fe=ci" target="_blank" class="watch-btn">
+          Watch Film on Vimeo
+        </a>
+      </div>
+      <div class="vid-number">03</div>
+    </div>
+    <p class="stills-label">Storyboard stills — click image to expand</p>
+    <div class="ci rv d2" onclick="openLB('assets/vid_fashion.jpg')">
+      <img src="assets/vid_fashion.jpg" alt="Luxury Fashion Film Stills">
+      <div class="ci-badge">Click to view full storyboard</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── 04 KITKAT ── -->
+<section class="video-block">
+  <div class="container">
+    <div class="vid-header rv">
+      <div class="vid-header-left">
+        <div class="eyebrow">Cinematic Product Video Projects</div>
+        <h2 class="heading-md">KitKat UGC Film — <em class="gold">Playful Lifestyle Commercial</em></h2>
+        <div class="vid-subtitle">UGC · Food Branding · Lifestyle · Social Commercial</div>
+        <div class="tag-row" style="margin-top:12px;">
+          <span class="tag">Kling Turbo</span>
+          <span class="tag">Veo</span>
+          <span class="tag">Gemini</span>
+        </div>
+        <a href="https://vimeo.com/1193005394?share=copy&fl=sv&fe=ci" target="_blank" class="watch-btn">
+          Watch Film on Vimeo
+        </a>
+      </div>
+      <div class="vid-number">04</div>
+    </div>
+    <p class="stills-label">Storyboard stills — click image to expand</p>
+    <div class="ci rv d2" onclick="openLB('assets/vid_kitkat.jpg')">
+      <img src="assets/vid_kitkat.jpg" alt="KitKat UGC Film Stills">
+      <div class="ci-badge">Click to view full storyboard</div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-logo">Jhones Wilson C</div>
+  <p class="footer-copy">© 2025 · AI Creative Designer · Mysore, Karnataka</p>
+  <div class="footer-links">
+    <a href="index.html">Home</a>
+    <a href="images.html">Campaigns</a>
+    <a href="https://linkedin.com/in/jhones-wilson-c-251728257" target="_blank">LinkedIn</a>
+    <a href="mailto:jhoneswilsonc@gmail.com">Email</a>
+  </div>
+</footer>
+
+<script src="shared.js"></script>
+</body>
+</html>
